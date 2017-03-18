@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<robot name="hash_slam">
+ <link name="base_link" >
+ <visual>
+ <geometry>
+ <box size="0.47 0.28 0.07"/>
+ </geometry>
+<material name="black">
+ <color rgba="1 0 1 0.5"/>
+ </material>
+ </visual>
+</link>
+<link name="camera_link" >
+<visual>
+<origin xyz="0 0 -0.015" rpy="0 0 0" /> 
+ <geometry>
+ <cylinder length="0.08" radius="0.02"/>
+ </geometry>
+<material name="blue">
+ <color rgba="0 0 1 0.5"/>
+</material>
+ </visual>
+</link>
+<link name="LW" >
+<visual>
+<origin xyz="0 0 0" rpy="1.57 0 0" />
+ <geometry>
+ <cylinder length="0.045" radius="0.05"/>
+ </geometry>
+ </visual>
+</link>
+ <link name="RW" >
+<visual>
+<origin xyz="0 0 0" rpy="-1.57 0 0" />
+ <geometry>
+ <cylinder length="0.045" radius="0.05"/>
+ </geometry>
+ </visual>
+</link>
+<link name="rodr">
+ <visual>
+ <origin xyz="0 -0.02 0" rpy="1.57 0 0"/>
+ <geometry>
+ <cylinder length="0.04" radius="0.005"/>
+ </geometry>
+ <material name="white">
+ <color rgba="1 1 1 1"/>
+ </material>
+ </visual>
+</link>
+<link name="rodl">
+ <visual>
+ <origin xyz="0 0.02 0" rpy="1.57 0 0"/>
+ <geometry>
+ <cylinder length="0.04" radius="0.005"/>
+ </geometry>
+ <material name="white">
+ <color rgba="1 1 1 1"/>
+ </material>
+ </visual>
+</link>
+<joint name="base_link_camera_link" type="fixed">
+<origin xyz="0.185 0 0.07" rpy="0 0 0"/>
+<parent link="base_link"/>
+ <child link="camera_link"/>
+</joint>
+<joint name="base_link_rodr" type="fixed">
+<origin xyz="0 -0.14 -0.045" rpy="0 0 0"/>
+<parent link="base_link"/>
+ <child link="rodr"/>
+</joint>
+<joint name="base_link_rodl" type="fixed">
+<origin xyz="0 0.14 -0.045" rpy="0 0 0"/>
+<parent link="base_link"/>
+ <child link="rodl"/>
+</joint>
+<joint name="rodr_RW" type="continuous">
+<origin xyz="0 -0.04 0" rpy="0 0 0"/>
+<axis xyz="0 1 0" /> 
+<parent link="rodr"/>
+ <child link="RW"/>
+</joint>
+<joint name="rodl_LW" type="continuous">
+<origin xyz="0 0.04 0" rpy="0 0 0"/>
+<axis xyz="0 1 0" /> 
+<parent link="rodl"/>
+ <child link="LW"/>
+</joint>
+</robot>
